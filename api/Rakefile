@@ -1,0 +1,6 @@
+require 'standalone_migrations'
+require File.expand_path('../application', __FILE__)
+require 'seedbank'
+
+Seedbank.load_tasks if defined?(Seedbank)
+StandaloneMigrations::Tasks.load_tasks

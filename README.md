@@ -1,4 +1,13 @@
-##Tests
+## Run API
+- `cd api`
+- `bundle install`
+- `puma`
+
+## Run App
+- `yarn`
+- `yarn start`
+
+## Tests
 - `brew install applesimutils`
-- `expo start -c`
-- `detox test`
+- `yarn start-test`
+- In a new window `detox test`

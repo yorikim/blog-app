@@ -85,6 +85,8 @@ GEM
     grape-kaminari (0.1.9)
       grape
       kaminari
+    grape-middleware-logger (1.12.0)
+      grape (>= 0.17)
     grape-route-helpers (2.1.0)
       activesupport
       grape (>= 0.16.0)
@@ -212,6 +214,7 @@ DEPENDENCIES
   grape
   grape-active_model_serializers
   grape-kaminari
+  grape-middleware-logger
   grape-route-helpers
   interactor (~> 3.0)
   kaminari-activerecord

@@ -3,6 +3,8 @@ require_relative 'v1/base'
 
 module Api
   class Root < Grape::API
+    insert_after Grape::Middleware::Formatter, Grape::Middleware::Logger
+
     format :json
     default_format :json
     formatter :json, Grape::Formatter::ActiveModelSerializers

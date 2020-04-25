@@ -13,7 +13,13 @@ const PostList = ({ currentEmail, posts, isLoading, loadPosts, removePost }) => 
       />
     }>
       {posts.map((post, index) =>
-        <Post testID={post.title} key={index} currentEmail={currentEmail} removePost={removePost} {...post} />
+        <Post
+          testID={post.title}
+          key={index}
+          currentEmail={currentEmail}
+          removePost={removePost}
+          {...post}
+        />
       )}
     </Content>
   )

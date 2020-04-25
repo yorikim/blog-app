@@ -17,54 +17,34 @@ const getPermissions = async (permission) => {
   }
 }
 
+const imagePickerOptions = {
+  mediaTypes: ImagePicker.MediaTypeOptions.All,
+  allowsEditing: true,
+  aspect: [4, 3],
+  quality: 1,
+}
+
 const CoverPicker = ({ image, setImage }) => {
   const getCameraRollPermissionsAsync = async () => await getPermissions(Permissions.CAMERA_ROLL);
   const getCameraPermissionsAsync = async () => await getPermissions(Permissions.CAMERA);
 
   const showActionSheet = () => {
-    ActionSheet.show(
-      {
-        options: BUTTONS,
-        cancelButtonIndex: CANCEL_INDEX
-      },
-      buttonIndex => {
+    ActionSheet.show({ options: BUTTONS, cancelButtonIndex: CANCEL_INDEX },
+      async (buttonIndex) => {
         if (buttonIndex === 0) {
-          makePhoto();
+          await updateImage(getCameraPermissionsAsync, ImagePicker.launchCameraAsync);
         }
         if (buttonIndex === 1) {
-          pickImage();
+          await updateImage(getCameraRollPermissionsAsync, ImagePicker.launchImageLibraryAsync);
         }
       }
     )
   };
 
-  const makePhoto = async () => {
+  const updateImage = async (getPermissions, action) => {
     try {
-      await getCameraPermissionsAsync();
-      let result = await ImagePicker.launchCameraAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.All,
-        allowsEditing: true,
-        aspect: [4, 3],
-        quality: 1,
-      });
-
-      if (!result.cancelled) {
-        setImage(result.uri);
-      }
-    } catch (e) {
-      alert(e.message);
-    }
-  };
-
-  const pickImage = async () => {
-    try {
-      await getCameraRollPermissionsAsync();
-      let result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.All,
-        allowsEditing: true,
-        aspect: [4, 3],
-        quality: 1,
-      });
+      await getPermissions();
+      let result = await action(imagePickerOptions);
 
       if (!result.cancelled) {
         setImage(result.uri);

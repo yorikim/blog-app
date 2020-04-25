@@ -6,6 +6,7 @@ require 'kaminari/activerecord'
 require 'rake'
 require 'carrierwave'
 require 'mime-types'
+require 'grape/middleware/logger'
 
 unless ENV['RACK_ENV'] == 'production'
   require 'pry-byebug'

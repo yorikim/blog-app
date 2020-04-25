@@ -14,10 +14,11 @@ const PostScreen = ({ route, email, loadPost, isLoadingPosts, openedPost, remove
     }, [postId])
   );
 
+  const posts = openedPost ? [openedPost] : []
   return (
     <PostList
       currentEmail={email}
-      posts={[openedPost]}
+      posts={posts}
       isLoading={isLoadingPosts}
       removePost={removePost}
     />

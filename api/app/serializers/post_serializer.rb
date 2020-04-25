@@ -6,7 +6,7 @@ class PostSerializer < ActiveModel::Serializer
 
   attribute :cover do
     if object.cover.present?
-      "#{$base_url}/v1/posts/#{object.id}/cover"
+      "#{$base_url}/v1/posts/#{object.id}/cover?#{rand(8 ** 10)}"
     else
       nil
     end

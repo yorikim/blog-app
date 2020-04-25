@@ -52,7 +52,7 @@ const PostForm = ({ post, savePost }) => {
           style={styles.body}
           onChange={args => args[0].nativeEvent.text}
           rules={{ required: true }}
-          defaultValue={post.title}
+          defaultValue={post.body}
         />
       </Item>
       <Item stackedLabel>
